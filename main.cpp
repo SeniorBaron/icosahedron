@@ -27,7 +27,7 @@ int WinMain() {
     glfwSetWindowPos(window, 0, 30);
 
     glfwMakeContextCurrent(window);
-    gladLoadGL(); // it took 5 hours to find out that it need to be added here.
+    gladLoadGL();
     
     utils::initializeScene();
 
