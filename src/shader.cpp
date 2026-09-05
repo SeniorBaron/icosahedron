@@ -38,7 +38,7 @@ bool shader::checkErrors(GLint targetEntity, GLuint target) {
 				glGetShaderInfoLog(target, 512, nullptr, errBufAscii);
 				copy_convert(errBufAscii, errMsg);
 				glfwTerminate();
-				MessageBox(NULL, (LPCWSTR)errMsg, (LPCWSTR)u"vertex shader compilation failed\n", MB_OK);
+				MessageBox(NULL, errBufAscii, "vertex shader compilation failed\n", MB_OK);
 				return true;
 			}
 			break;
@@ -50,7 +50,7 @@ bool shader::checkErrors(GLint targetEntity, GLuint target) {
 				glGetShaderInfoLog(target, 512, nullptr, errBufAscii);
 				copy_convert(errBufAscii, errMsg);
 				glfwTerminate();
-				MessageBox(NULL, (LPCWSTR)errMsg, (LPCWSTR)u"fragment shader compilation failed\n", MB_OK);
+				MessageBox(NULL, errBufAscii, "fragment shader compilation failed\n", MB_OK);
 				return true;
 			}
 			break;
@@ -62,7 +62,7 @@ bool shader::checkErrors(GLint targetEntity, GLuint target) {
 				glGetProgramInfoLog(target, 512, nullptr, errBufAscii);
 				copy_convert(errBufAscii, errMsg);
 				glfwTerminate();
-				MessageBox(NULL, (LPCWSTR)errMsg, (LPCWSTR)u"shaders linking failed\n", MB_OK);
+				MessageBox(NULL, errBufAscii, "shaders linking failed\n", MB_OK);
 				return true;
 			}
 			break;
@@ -86,7 +86,7 @@ shader::shader(const char* vertPath, const char* fragPath) {
 	}
 	catch (std::ifstream::failure& error) {
 		copy_convert(error.what(), errMsg);
-		MessageBox(nullptr, (LPCWSTR)errMsg, (LPCWSTR)u"failed to open Source file", MB_OK);
+		MessageBox(nullptr, error.what(), "failed to open Source file", MB_OK);
 		abort();
 	}
 	
